@@ -4,6 +4,9 @@ import Header from './components/Header/Header';
 import SimpleBottomNavigation from './components/MainNav';
 import { Container } from '@material-ui/core';
 import React from "react";
+import Trending from './Pages/Trending/Trending';
+import Movies from './Pages/Movies/Movies';
+import Search from './Pages/Search/Search';
 
 
 function App() {

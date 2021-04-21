@@ -10,8 +10,6 @@ const Genres = ({
   type,
   setPage,
 }) => {
-
-
   const handleAdd = (genre) => {
     setselectedGenres([...selectedGenres, genre]);
     setGenres(genres.filter((g) => g.id !== genre.id));
@@ -19,9 +17,8 @@ const Genres = ({
   };
 
   const handleRemove = (genre) => {
-  
-    setselectedGenres(selectedGenres.filter((g) => g.id !== genre.id)); 
-    setGenres([...genres,genre]);
+    setselectedGenres(selectedGenres.filter((g) => g.id !== genre.id));
+    setGenres([...genres, genre]);
     setPage(1);
   };
 
@@ -33,14 +30,8 @@ const Genres = ({
     setGenres(data.genres);
   };
 
-  console.log(genres);
-
   useEffect(() => {
     fetchGenres();
-
-    return () => {
-      setGenres({});
-    };
     //eslint-disable-next-line
   }, []);
 

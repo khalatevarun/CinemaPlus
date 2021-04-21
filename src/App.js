@@ -7,6 +7,7 @@ import React from "react";
 import Trending from './Pages/Trending/Trending';
 import Movies from './Pages/Movies/Movies';
 import Search from './Pages/Search/Search';
+import Series from './Pages/Series/Series';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Switch>
         <Route path= '/'component={Trending} exact/> 
         <Route path= '/movies'component={Movies}/>
+        <Route path='/series' component={Series}/>
         <Route path= '/search'component={Search}/>
         
       </Switch>

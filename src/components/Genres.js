@@ -58,7 +58,6 @@ const Genres = ({
             clickable
             onClick={() => handleAdd(genre)}
             size="small"
-            color="#bbe1fa"
             key={genre.id}
           />
         ))}

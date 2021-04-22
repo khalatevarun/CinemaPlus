@@ -20,7 +20,6 @@ const Genres = ({
     setSelectedGenres(selectedGenres.filter((g) => g.id !== genre.id));
     setGenres([...genres, genre]);
     setPage(1);
-    
   };
 
   const fetchGenres = async () => {
@@ -59,6 +58,7 @@ const Genres = ({
             clickable
             onClick={() => handleAdd(genre)}
             size="small"
+            color="#bbe1fa"
             key={genre.id}
           />
         ))}

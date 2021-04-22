@@ -11,7 +11,7 @@ const Movies = () => {
     const [page, setPage] = useState(1);
     const [content, setContent]=useState([])
     const [ numOfPages, setNumOfPages] = useState();
-    const [selectedGenres, setselectedGenres]=useState([]);
+    const [selectedGenres, setSelectedGenres]=useState([]);
     const [genres, setGenres]=useState([]);
     const genreForURL = useGenre(selectedGenres);
 
@@ -40,7 +40,7 @@ const Movies = () => {
                 selectedGenres = {selectedGenres}
                 genres = {genres}
                 setGenres = {setGenres}
-                setselectedGenres = {setselectedGenres}
+                setSelectedGenres = {setSelectedGenres}
                 setPage = {setPage}
             />
             <div className="movies">
@@ -58,7 +58,7 @@ const Movies = () => {
                 )}
             </div>
             {numOfPages>1 && (
-            <CustomPagination setPage={setPage} numberofPages = {numOfPages}/> )}
+            <CustomPagination page = {page} setPage={setPage} numberofPages = {numOfPages}/> )}
         </div>
     )
 }

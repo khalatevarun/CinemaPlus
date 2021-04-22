@@ -4,22 +4,23 @@ import { useEffect } from "react";
 
 const Genres = ({
   selectedGenres,
-  setselectedGenres,
+  setSelectedGenres,
   genres,
   setGenres,
   type,
   setPage,
 }) => {
   const handleAdd = (genre) => {
-    setselectedGenres([...selectedGenres, genre]);
+    setSelectedGenres([...selectedGenres, genre]);
     setGenres(genres.filter((g) => g.id !== genre.id));
     setPage(1);
   };
 
   const handleRemove = (genre) => {
-    setselectedGenres(selectedGenres.filter((g) => g.id !== genre.id));
+    setSelectedGenres(selectedGenres.filter((g) => g.id !== genre.id));
     setGenres([...genres, genre]);
     setPage(1);
+    
   };
 
   const fetchGenres = async () => {

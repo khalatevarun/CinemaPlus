@@ -7,8 +7,9 @@ const darkTheme = createMuiTheme({
   },
 });
 
-const CustomPagination = ({ setPage, numberofPages = 10 }) => {
+const CustomPagination = ({ page, setPage, numberofPages = 10 }) => {
   const handlePageChange = (page) => {
+    console.log(page, "is selected");
     setPage(page);
     window.scroll(0, 0);
   };
@@ -25,6 +26,7 @@ const CustomPagination = ({ setPage, numberofPages = 10 }) => {
       <ThemeProvider theme={darkTheme}>
         <Pagination
           count={numberofPages}
+          page = {page}
           onChange={(e) => handlePageChange(e.target.textContent)}
           hideNextButton
           hidePrevButton

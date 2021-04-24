@@ -50,7 +50,7 @@ Following is a sneak peek of how the interface looks. To use the website live, h
 
 | Search                                                | Details                                    |
 |------------------------------------- | -------------------------------- | 
-| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg) |
+| ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg ) |
 
 
 

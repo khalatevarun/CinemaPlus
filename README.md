@@ -23,6 +23,9 @@ Entertainment Hub is a fully responsive website where you can find trending movi
   <li>
    Search - Search page facilitates searching for both movies and tv series based on the text entered.
   </li>
+  <li>
+    Details - Displays the plot, cast crew and link to trailer of the movie/series selected.
+  </li>
   </ul>
   
 <h2>Technologies Used</h2> 

@@ -7,7 +7,7 @@
 A one stop destination for movies and tv series 
 </p>
 
-Entertainment Hub is a website where you can find trending movies and tvseries, read the plot, know the cast crew and event watch the trailers of the same. You can also search for movies/tv series in the search page.
+Entertainment Hub is a fully responsive website where you can find trending movies and tvseries, read the plot, know the cast crew and event watch the trailers of the same. You can also search for movies/tv series in the search page.
 
 <h2>Features</h2> 
  <ul>

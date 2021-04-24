@@ -31,42 +31,10 @@ Entertainment Hub is a fully responsive website where you can find trending movi
 <h2>Technologies Used</h2> 
  <ul>
   <li>
-    HTML
-  </li>
-  <li>
-    CSS
-  </li>
-  <li>
-    Javascript
-  </li>
-  <li>
     ReactJS
   </li>
   <li>
     Material UI
-    <ul>
-      <li>
-        Theme Provider
-      </li>
-      <li>
-        Chips
-      </li>
-      <li>
-        Badges
-      </li>
-      <li>
-        Modal
-      </li>
-      <li>
-        Pagination
-      </li>
-      <li>
-        Icons
-      </li>
-      <li>
-        Bottom Navigation
-      </li>
-    </ul>
   </li>
   <li>
     The Movie Database API

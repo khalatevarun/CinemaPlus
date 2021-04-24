@@ -13,7 +13,7 @@ Following is a sneak peek of how the interface looks. To use the website live, h
 
 |Quick preview|
 |-------------|
-|![]() |
+|![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/recording.gif) |
 
 | Trending                               | Movies                             |                        
 | ------------------------------------ | ------------------------------------ | 

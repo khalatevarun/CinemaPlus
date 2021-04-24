@@ -28,13 +28,10 @@ Entertainment Hub is a website where you can find trending movies and tvseries, 
 <h2>Technologies Used</h2> 
  <ul>
   <li>
-    ReactJS framework
+    Frontend
   </li>
   <li>
-    Material UI components
-  </li>
-  <li>
-   Movies API for backend
+    Backend
   </li>
   </ul>
   

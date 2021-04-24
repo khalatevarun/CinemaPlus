@@ -7,23 +7,6 @@
 A one stop destination for movies and tv series 
 </p>
 
-<h2>  Screenshots </h2>
-
-Following is a sneak peek of how the interface looks. To use the website live, head on over to the [link](https://entertainment-hub.netlify.app/)
-
-|Quick preview|
-|-------------|
-|![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/recording.gif) |
-
-| Trending                               | Movies                             |                        
-| ------------------------------------ | ------------------------------------ | 
-| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/movies.jpeg) |
-
-| TV Series                                | Search                          |
------------------------------------- | ------------------------------------ | 
- ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/tvseries.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) |
-
-
 <h2>Features</h2> 
  <ul>
   <li>
@@ -39,6 +22,25 @@ Following is a sneak peek of how the interface looks. To use the website live, h
    Search
   </li>
   </ul>
+
+<h2>  Screenshots </h2>
+
+Following is a sneak peek of how the interface looks. To use the website live, head on over to the [link](https://entertainment-hub.netlify.app/)
+
+| Quick preview                         | Trending                               |
+| ------------------------------------ | ------------------------------------ | 
+|![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/recording.gif) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) |
+
+| Movies                               | TV Series                             |                        
+| ------------------------------------ | ------------------------------------ | 
+| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/movies.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/tvseries.jpeg) |
+
+| Search                                | Details                          |
+------------------------------------ | ------------------------------------ | 
+ ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg) |
+
+
+
 
 
 <h2>Technologies Used</h2> 

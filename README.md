@@ -15,9 +15,13 @@ Following is a sneak peek of how the interface looks. To use the website live, h
 |-------------|
 |![]() |
 
-| Trending                               | Movies                             | TV Series                                | Search                          |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | 
-| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg){:height="300px" width="300px"} | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/movies.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/tvseries.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) |
+| Trending                               | Movies                             |                        
+| ------------------------------------ | ------------------------------------ | 
+| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/movies.jpeg) |
+
+| TV Series                                | Search                          |
+------------------------------------ | ------------------------------------ | 
+ ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/tvseries.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) |
 
 
 <h2>Features</h2> 

@@ -42,7 +42,7 @@ Following is a sneak peek of how the interface looks. To use the website live, h
 
 | Quick preview                              | Details                             |
 | ------------------------------------ | ------------------------------------ |
-| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/recording.gif) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg) |
+| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/screen_record.gif) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg) |
 
 | Movies                              | TV Series                             |
 | ------------------------------------ | ------------------------------------ |

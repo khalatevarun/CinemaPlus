@@ -68,6 +68,9 @@ Entertainment Hub is a fully responsive website where you can find trending movi
       </li>
     </ul>
   </li>
+  <li>
+    The Movie Database API
+  </li>
   </ul>
   
 <h2>  Screenshots </h2>

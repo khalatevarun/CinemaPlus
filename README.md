@@ -40,17 +40,17 @@ A one stop destination for movies and tv series
 
 Following is a sneak peek of how the interface looks. To use the website live, head on over to the [link](https://entertainment-hub.netlify.app/)
 
-| Quick preview                              | Trending                             |
+| Quick preview                              | Details                             |
 | ------------------------------------ | ------------------------------------ |
-| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/recording.gif) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) |
+| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/recording.gif) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg) |
 
 | Movies                              | TV Series                             |
 | ------------------------------------ | ------------------------------------ |
 | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/movies.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/tvseries.jpeg) |
 
-| Search                             | Details                             |
+| Search                             | Trending                             |
 | ------------------------------------ | ------------------------------------ |
-| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/Details.jpg) |
+| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) |
 
 
 

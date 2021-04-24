@@ -45,6 +45,24 @@ Entertainment Hub is a fully responsive website where you can find trending movi
       <li>
         Theme Provider
       </li>
+      <li>
+        Chips
+      </li>
+      <li>
+        Badges
+      </li>
+      <li>
+        Modal
+      </li>
+      <li>
+        Pagination
+      </li>
+      <li>
+        Icons
+      </li>
+      <li>
+        Bottom Navigation
+      </li>
     </ul>
   </li>
   </ul>

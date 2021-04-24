@@ -11,9 +11,17 @@ A one stop destination for movies and tv series
 
 Following is a sneak peek of how the interface looks. To use the website live, head on over to the [link](https://entertainment-hub.netlify.app/)
 
-| Trending                               | Movies                             | TV Series                                | Search                          |
-| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | 
-| ![]() | ![]() | ![]() | ![]( ) |
+|Quick preview|
+|-------------|
+|![]() |
+
+| Trending                               | Movies                             |                        
+| ------------------------------------ | ------------------------------------ | 
+| ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/movies.jpeg) |
+
+| TV Series                                | Search                          |
+------------------------------------ | ------------------------------------ | 
+ ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/tvseries.jpeg) | ![]( https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) |
 
 
 <h2>Features</h2> 

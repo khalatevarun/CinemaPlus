@@ -92,6 +92,9 @@ Following is a sneak peek of how the interface looks. To use the website live, h
       <li>
         Badges
       </li>
+       <li>
+        Pagination
+      </li>
       <li>
         Theme Provider
       </li>

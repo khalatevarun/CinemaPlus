@@ -78,6 +78,7 @@ Following is a sneak peek of how the interface looks. To use the website live, h
     
   </ul>
 </li>
+</ul>
 <ul>
   <li>
     Material UI
@@ -98,7 +99,7 @@ Following is a sneak peek of how the interface looks. To use the website live, h
   </li>
   </ul>
   
-</ul>
+
 
 
 

@@ -57,6 +57,48 @@ Following is a sneak peek of how the interface looks. To use the website live, h
 | ------------------------------------ | ------------------------------------ |
 | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/search.jpeg) | ![](https://github.com/khalatevarun/entertainment-hub/blob/main/Screenshots/trending.jpeg) |
 
+<h2> Learnings </h2>
+
+<ul>
+<li>
+  React
+  <ul>
+    <li>
+      Router
+    </li>
+    <li>
+      State Hook
+    </li>
+    <li>
+        Effect Hook
+      </li>
+    <li>
+        Alice carousel
+      </li>
+    
+  </ul>
+</li>
+<ul>
+  <li>
+    Material UI
+    <ul>
+      <li>
+        Chips
+      </li>
+      <li>
+        Bottom navigation
+      </li>
+      <li>
+        Badges
+      </li>
+      <li>
+        Theme Provider
+      </li>
+    </ul>
+  </li>
+  </ul>
+  
+</ul>
 
 
 

@@ -95,6 +95,9 @@ Following is a sneak peek of how the interface looks. To use the website live, h
        <li>
         Pagination
       </li>
+       <li>
+        Modal
+      </li>
       <li>
         Theme Provider
       </li>

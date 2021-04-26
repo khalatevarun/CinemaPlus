@@ -59,6 +59,8 @@ Following is a sneak peek of how the interface looks. To use the website live, h
 
 <h2> Learnings </h2>
 
+This is my first project in react. After completing a small introductory course on react i decided to apply the concepts in order to have a good grasp on them.
+
 <ul>
 <li>
   React

@@ -64,7 +64,7 @@ Following is a sneak peek of how the interface looks. To use the website live, h
   React
   <ul>
     <li>
-      <strong>Router</strong> - Collection of navigational components that compose declaratively with your application. The component was used to have a seaprate url for "movies", "trending", "tv series" and "search" components.
+      <strong>Router</strong> - Collection of navigational components that compose declaratively with your application. The component was used to have a separate url for "movies", "trending", "tv series" and "search" components.
     </li>
     <li>
       <strong> State Hook </strong> - Allows you to have state variables in functional components.

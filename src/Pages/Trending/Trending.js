@@ -1,9 +1,9 @@
-import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
-import SingleContent from "../../components/SingleContent/SingleContent";
-import "./Trending.css";
-import CustomPagination from "../../components/Pagination/CustomPagination";
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import SingleContent from '../../components/SingleContent/SingleContent';
+import './Trending.css';
+import CustomPagination from '../../components/Pagination/CustomPagination';
 
 const Trending = () => {
   const [content, setContent] = useState([]);
@@ -11,10 +11,8 @@ const Trending = () => {
 
   const fetchTrending = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`,
     );
-
-    console.log(data);
 
     setContent(data.results);
   };

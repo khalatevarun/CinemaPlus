@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
-import Backdrop from "@material-ui/core/Backdrop";
-import Fade from "@material-ui/core/Fade";
-import YouTubeIcon from "@material-ui/icons/YouTube";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import axios from 'axios';
 import {
   img_500,
   unavailable,
   unavailableLandscape,
-} from "../../config/config";
-import { Button } from "@material-ui/core";
-import "./ContentModal.css";
-import Carousel from "../Carousel/Carousel";
+} from '../../config/config';
+import { Button } from '@material-ui/core';
+import './ContentModal.css';
+import Carousel from '../Carousel/Carousel';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   paper: {
-    width: "90%",
-    height: "80%",
-    backgroundColor: "#0f4c75",
-    border: "1px solid #282c34",
+    width: '90%',
+    height: '80%',
+    backgroundColor: '#0f4c75',
+    border: '1px solid #282c34',
     borderRadius: 10,
-    color: "white",
+    color: 'white',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(1, 1, 3),
   },
@@ -48,7 +48,7 @@ export default function ContentModal({ children, media_type, id }) {
 
   const fetchData = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${media_type}/${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
     );
 
     setContent(data);
@@ -56,7 +56,7 @@ export default function ContentModal({ children, media_type, id }) {
 
   const fetchVideo = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${media_type}/${id}/videos?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
     );
     setVideo(data.results[0]?.key);
   };
@@ -73,7 +73,7 @@ export default function ContentModal({ children, media_type, id }) {
         type="button"
         onClick={handleOpen}
         className="media"
-        style={{ cursor: "pointer" }}
+        style={{ cursor: 'pointer' }}
         color="inherit"
       >
         {children}
@@ -118,9 +118,9 @@ export default function ContentModal({ children, media_type, id }) {
                     {(
                       content.first_air_date ||
                       content.release_date ||
-                      "-----"
+                      '-----'
                     ).substring(0, 4)}
-                    ) 
+                    )
                   </span>
                   {content.tagline && (
                     <i className="tagline">{content.tagline}</i>
@@ -129,12 +129,7 @@ export default function ContentModal({ children, media_type, id }) {
                     {content.overview}
                   </span>
                   <div>
-                        <Carousel  media_type={media_type} id={id}
-                        />
-
-
-
-
+                    <Carousel media_type={media_type} id={id} />
                   </div>
                   <Button
                     variant="contained"

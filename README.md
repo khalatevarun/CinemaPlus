@@ -1,4 +1,4 @@
-![](https://github.com/khalatevarun/entertainment-hub/blob/main/public/logo512.png)
+![](https://github.com/khalatevarun/entertainment-hub/blob/main/public/logo192.png)
 <h1 align="center">
   <a>🎬 Entertainment Hub 🎥 </a>
 </h1>

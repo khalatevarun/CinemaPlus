@@ -1,6 +1,6 @@
 ![](https://github.com/khalatevarun/entertainment-hub/blob/main/public/logo192.png)
 <h1 align="center">
-  <a>🎬 Entertainment Hub 🎥 </a>
+  <a>Entertainment Hub </a>
 </h1>
 
 <p align="center">

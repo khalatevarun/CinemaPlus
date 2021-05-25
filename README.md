@@ -1,5 +1,10 @@
-![](https://github.com/khalatevarun/entertainment-hub/blob/main/public/logo192.png)
+
 <h1 align="center">
+<p align="center">
+  <a>
+    <img alt="Logo" src="https://github.com/khalatevarun/entertainment-hub/blob/main/public/logo192.png" width="100"/>
+  </a>
+</p>
   <a>Entertainment Hub </a>
 </h1>
 

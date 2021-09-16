@@ -10,7 +10,7 @@ const Genres = ({
   type,
   setPage,
 }) => {
-  console.log(genres);
+ 
   const handleAdd = (genre) => {
     setSelectedGenres([...selectedGenres, genre]);
     setGenres(genres.filter((g) => g.id !== genre.id));

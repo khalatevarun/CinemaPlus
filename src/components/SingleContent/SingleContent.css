@@ -32,10 +32,14 @@
     width: 40%;
     margin: 10px 0;
   }
+  .poster {
+    max-height: 85%;
+  }
 }
 
 .poster {
   border-radius: 10px;
+  max-height: 85%;
 }
 
 .title {

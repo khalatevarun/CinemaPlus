@@ -10,7 +10,6 @@ const Genres = ({
   type,
   setPage,
 }) => {
- 
   const handleAdd = (genre) => {
     setSelectedGenres([...selectedGenres, genre]);
     setGenres(genres.filter((g) => g.id !== genre.id));
@@ -42,11 +41,16 @@ const Genres = ({
         selectedGenres.map((genre) => (
           <Chip
             label={genre.name}
-            style={{ margin: 4, fontSize: 16 }}
             clickable
             onDelete={() => handleRemove(genre)}
             size="small"
-            color="secondary"
+            style={{
+              margin: 4,
+              fontSize: 12,
+              fontWeight: 700,
+              fontFamily: 'Montserrat',
+              backgroundColor: '#21e18c',
+            }}
             key={genre.id}
           />
         ))}
@@ -55,7 +59,12 @@ const Genres = ({
         genres.map((genre) => (
           <Chip
             label={genre.name}
-            style={{ margin: 4, fontSize: 16 }}
+            style={{
+              margin: 4,
+              fontSize: 12,
+              fontWeight: 700,
+              fontFamily: 'Montserrat',
+            }}
             clickable
             onClick={() => handleAdd(genre)}
             size="small"

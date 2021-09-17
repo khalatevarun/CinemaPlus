@@ -16,12 +16,12 @@ const SingleContent = ({
   return (
     <ContentModal media_type={media_type} id={id}>
       <Badge
+        className="custom-badge"
         anchorOrigin={{
           vertical: 'top',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
         badgeContent={vote_average}
-        color={vote_average > 6 ? 'primary' : 'secondary'}
       />
 
       <img
@@ -29,7 +29,7 @@ const SingleContent = ({
         alt={title}
         src={poster ? `${img_300}/${poster}` : unavailable}
       />
-      <b className="title">{title}</b>
+      <div className="title">{title}</div>
       <div>
         <div className="type">
           {' '}

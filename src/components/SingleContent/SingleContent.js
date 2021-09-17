@@ -12,9 +12,10 @@ const SingleContent = ({
   date,
   media_type,
   vote_average,
+  customRef,
 }) => {
   return (
-    <ContentModal media_type={media_type} id={id}>
+    <ContentModal media_type={media_type} id={id} customRef={customRef}>
       <Badge
         className="custom-badge"
         anchorOrigin={{

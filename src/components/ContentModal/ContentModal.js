@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ContentModal({ children, media_type, id }) {
+export default function ContentModal({ children, media_type, id, customRef }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState();
@@ -75,6 +75,7 @@ export default function ContentModal({ children, media_type, id }) {
         className="media"
         style={{ cursor: 'pointer' }}
         color="inherit"
+        ref={customRef}
       >
         {children}
       </div>

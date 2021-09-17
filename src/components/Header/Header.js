@@ -6,6 +6,7 @@ const Header = () => {
       <div>
         Cinema<span className="header__2">Plus</span>
       </div>
+      <div></div>
     </span>
   );
 };

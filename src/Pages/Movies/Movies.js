@@ -34,7 +34,7 @@ const Movies = () => {
 
       console.log(node);
     },
-    [loading, hasMore],
+    [loading, hasMore]
   );
 
   // const fetchMovies = async () => {
@@ -52,8 +52,6 @@ const Movies = () => {
   //   //eslint-disable-next-line
   // }, [page, genreForURL]);
 
-  console.log('Movies>>>', content);
-
   return (
     <div>
       <span className="pageTitle">Movies</span>
@@ -66,7 +64,7 @@ const Movies = () => {
         setPage={setPage}
       />
       <div className="movies">
-        {!loading ? (
+        {list &&
           list.map((c, index) => (
             <SingleContent
               customRef={list.length === index + 1 ? lastListElementRef : null}
@@ -78,8 +76,9 @@ const Movies = () => {
               media_type="movie"
               vote_average={c.vote_average}
             />
-          ))
-        ) : (
+          ))}
+
+        {loading && (
           <>
             <Box sx={{ width: 200, marginRight: 0.5, my: 5 }}>
               <Skeleton

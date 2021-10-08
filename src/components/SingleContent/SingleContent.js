@@ -59,12 +59,12 @@ const SingleContent = ({
     }
   };
 
-  const addMovieToWatchlist = async () => {
+  const addMovieToWatchlist = async (id) => {
     setLoading(true);
     console.log('Doc id>>', constWatchlist);
 
     try {
-      const watchlistRef = doc(db, 'watchlists', constWatchlist);
+      const watchlistRef = doc(db, 'watchlists', id);
 
       await updateDoc(watchlistRef, {
         list: arrayUnion({

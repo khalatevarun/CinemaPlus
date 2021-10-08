@@ -24,6 +24,9 @@ const SingleContent = ({
   customRef,
 }) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const userId = useSelector((state) => state.auth.user.uid);
+  const userName = useSelector((state) => state.auth.name);
+
   console.log('ISLLOG ED IN>>>>', isLoggedIn);
 
   const [openWatchlistOptions, setOpenWatchlistOptions] = useState(false);
@@ -32,13 +35,13 @@ const SingleContent = ({
 
   const [loading, setLoading] = useState(false);
 
-  const addNewWatchlist = async (watchlist) => {
+  const addNewWatchlist = async (newWatchListName) => {
     setLoading(true);
     try {
       const docRef = await addDoc(collection(db, 'watchlists'), {
-        createdById: '',
-        createdByName: '',
-        name: watchlist,
+        createdById: userId,
+        createdByName: userName,
+        name: newWatchListName,
         list: [
           {
             id: id,

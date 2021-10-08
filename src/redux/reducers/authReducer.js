@@ -1,18 +1,21 @@
 import * as TYPES from '../../constants/actionTypes';
 
 const initialState = {
-  user: { name: null, id: null },
+  user: {},
   isLoggedIn: false,
+  watchlists: [],
 };
 
 export default function authReducer(state = initialState, action) {
+  console.log('STATE AND ACITON>>>>', state, action);
   switch (action.type) {
     case TYPES.LOGIN:
       return {
         ...state,
-        user: '',
+        user: action.data.user,
         isLoggedIn: true,
-        name: '',
+        name: action.data.name,
+        watchlists: action.data.watchlists,
       };
 
     case TYPES.LOGOUT:

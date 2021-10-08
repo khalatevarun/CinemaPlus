@@ -12,6 +12,7 @@ import {
 import { db } from '../../firebase';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const SingleContent = ({
   id,
@@ -22,7 +23,10 @@ const SingleContent = ({
   vote_average,
   customRef,
 }) => {
-  const [openWatchlists, setOpenWatchlists] = useState(false);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log('ISLLOG ED IN>>>>', isLoggedIn);
+
+  const [openWatchlistOptions, setOpenWatchlistOptions] = useState(false);
 
   const [constWatchlist, setConstWatchlist] = useState(null);
 
@@ -80,7 +84,12 @@ const SingleContent = ({
   };
 
   const handleAddWatchlist = () => {
-    setOpenWatchlists(!openWatchlists);
+    if (!isLoggedIn) {
+      // prompt user to login first
+      return;
+    }
+
+    setOpenWatchlistOptions(!openWatchlistOptions);
   };
 
   return (
@@ -89,7 +98,7 @@ const SingleContent = ({
       id={id}
       customRef={customRef}
       handleAddWatchlist={handleAddWatchlist}
-      openWatchlists={openWatchlists}
+      openWatchlistOptions={openWatchlistOptions}
       addMovieToWatchlist={addMovieToWatchlist}
       addNewWatchlist={addNewWatchlist}
     >

@@ -25,6 +25,7 @@ import {
 } from '@material-ui/core';
 import './ContentModal.css';
 import Carousel from '../Carousel/Carousel';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -43,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 1, 3),
   },
 }));
-const watchlists = ['watchlist1', 'watchlist2'];
 
 export default function ContentModal({
   children,
@@ -51,17 +51,21 @@ export default function ContentModal({
   id,
   customRef,
   handleAddWatchlist,
-  openWatchlists,
+  openWatchlistOptions,
   addMovieToWatchlist,
   addNewWatchlist,
 }) {
-  console.log('Children>>>', children);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
   const [newWatchListName, setNewWatchListName] = useState();
   const [openNewWatchlistForm, setOpenNewWatchlistForm] = useState(false);
+  const watchlists = useSelector((state) => state.auth.watchlists);
+  console.log(
+    'AWDASDHAS AS>>>>>>>>>>>>>>',
+    useSelector((state) => state.auth)
+  );
 
   const handleNewWatchlistForm = () => {
     setOpenNewWatchlistForm(!openNewWatchlistForm);
@@ -185,19 +189,19 @@ export default function ContentModal({
               <Dialog
                 onClose={handleAddWatchlist}
                 aria-labelledby="simple-dialog-title"
-                open={openWatchlists}
+                open={openWatchlistOptions}
               >
                 <DialogTitle id="simple-dialog-title">
                   Add to watchlistrwerw
                 </DialogTitle>
                 <List>
-                  {watchlists.map((watchlist) => (
+                  {watchlists?.map((watchlist) => (
                     <ListItem
                       button
-                      onClick={() => addMovieToWatchlist(watchlist)}
+                      onClick={() => addMovieToWatchlist(watchlist.id)}
                       key={watchlist}
                     >
-                      <ListItemText primary={watchlist} />
+                      <ListItemText primary={watchlist.name} />
                     </ListItem>
                   ))}
 

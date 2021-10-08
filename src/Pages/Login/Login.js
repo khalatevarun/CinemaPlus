@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link as RouterLink, Redirect, useHistory } from 'react-router-dom';
 // import ErrorDialog from '../components/ErrorDialog';
 import { useFirebaseAuth } from '../../hooks/useFirebaseAuth';
@@ -11,21 +11,35 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { TextField, Grid } from '@material-ui/core';
-import { collection, setDoc, doc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import {
+  collection,
+  setDoc,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+} from 'firebase/firestore';
 import { db } from '../../firebase';
+import { useDispatch } from 'react-redux';
 
 export default function Login() {
   const {
     signInInWithEmailAndPassword,
     authenticated,
     signUpWithEmailAndPassword,
+    user,
+    logout,
   } = useFirebaseAuth();
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [wishlists, setWishlists] = useState([]);
   const [name, setName] = useState(null);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
 
@@ -59,8 +73,6 @@ export default function Login() {
       } catch (e) {
         console.error('Error adding document: ', e);
       }
-
-      history.push('/movies');
     } catch (err) {
       console.log('You have got an error: ', err.code);
       if (err.code === 'auth/email-already-in-use') {
@@ -78,7 +90,25 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     try {
-      await signInInWithEmailAndPassword(email, password);
+      const response = await signInInWithEmailAndPassword(email, password);
+      const docRef = doc(db, 'users', response.user.uid);
+      const docSnap = await getDoc(docRef);
+      setName(docSnap.data().name);
+
+      const q = query(
+        collection(db, 'watchlists'),
+        where('createdById', '==', user.uid)
+      );
+
+      const querySnapshot = await getDocs(q);
+      // setWishlists(
+      //   querySnapshot.docs.map((doc) => ({ name: doc.data().name, id: doc.id }))
+      // );
+      const watchlists = querySnapshot.docs.map((doc) => ({
+        name: doc.data().name,
+        id: doc.id,
+      }));
+      dispatch({ type: 'login', data: { user, watchlists, name } });
       history.push('/movies');
     } catch (err) {
       if (err.code === 'auth/wrong-password') {
@@ -94,6 +124,7 @@ export default function Login() {
       setLoading(false);
     }
   };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -107,8 +138,21 @@ export default function Login() {
   };
 
   if (authenticated) {
-    return <Redirect to="/movies" />;
   }
+
+  const auth = getAuth();
+
+  const getWishlists = async (user) => {
+    const q = query(
+      collection(db, 'wishlists'),
+      where('createdById', '==', user.uid)
+    );
+
+    const querySnapshot = await getDocs(q);
+    setWishlists(
+      querySnapshot.docs.map((doc) => ({ name: doc.data().name, id: doc.id }))
+    );
+  };
 
   return (
     <div className="login">

@@ -110,7 +110,8 @@ export default function Login() {
         id: doc.id,
       }));
       dispatch({ type: LOGIN, data: { user, watchlists, name } });
-      history.push('/movies');
+      // history.push('/movies');
+      history.push('/mywatchlists');
     } catch (err) {
       if (err.code === 'auth/wrong-password') {
         setErrorMessage('You have entered wrong password. Please try again!');

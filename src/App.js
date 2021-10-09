@@ -11,6 +11,7 @@ import Series from './Pages/Series/Series';
 import Login from './Pages/Login/Login';
 import store from './redux/store/store';
 import { Provider } from 'react-redux';
+import MyWatchlists from './Pages/MyWatchlists/MyWatchlists';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/movies" component={Movies} />
               <Route path="/series" component={Series} />
               <Route path="/search" component={Search} />
+              <Route path="/mywatchlists" component={MyWatchlists} />
             </>
           </Switch>
         </div>

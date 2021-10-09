@@ -29,7 +29,6 @@ export default function authReducer(state = initialState, action) {
           (watchlist) => watchlist.id !== action.data.id
         ), // check if its action.data
       };
-
     case TYPES.LOGOUT:
       return {
         ...state,
@@ -37,7 +36,6 @@ export default function authReducer(state = initialState, action) {
         isLoggedIn: false,
         name: null,
       };
-
     default:
       return state;
   }

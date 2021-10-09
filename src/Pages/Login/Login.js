@@ -23,6 +23,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { useDispatch } from 'react-redux';
+import { LOGIN } from '../../constants/actionTypes';
 
 export default function Login() {
   const {
@@ -108,7 +109,7 @@ export default function Login() {
         name: doc.data().name,
         id: doc.id,
       }));
-      dispatch({ type: 'login', data: { user, watchlists, name } });
+      dispatch({ type: LOGIN, data: { user, watchlists, name } });
       history.push('/movies');
     } catch (err) {
       if (err.code === 'auth/wrong-password') {

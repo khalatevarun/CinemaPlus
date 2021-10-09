@@ -13,6 +13,9 @@ import { db } from '../../firebase';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { query, where } from 'firebase/firestore';
+import { useDispatch } from 'react-redux';
+import { ADD_WATCHLIST } from '../../constants/actionTypes';
 
 const SingleContent = ({
   id,
@@ -26,6 +29,7 @@ const SingleContent = ({
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const userId = useSelector((state) => state.auth.user.uid);
   const userName = useSelector((state) => state.auth.name);
+  const dispatch = useDispatch();
 
   console.log('ISLLOG ED IN>>>>', isLoggedIn);
 
@@ -54,6 +58,11 @@ const SingleContent = ({
         ],
       });
       console.log('Document written with ID: ', docRef.id);
+      dispatch({
+        type: ADD_WATCHLIST,
+        data: { name: newWatchListName, id: docRef.id },
+      });
+      //TODO: write a function to add the new watchlist created to the global state
       setConstWatchlist(docRef.id);
     } catch (e) {
       console.error('Error adding document: ', e);
@@ -64,11 +73,9 @@ const SingleContent = ({
 
   const addMovieToWatchlist = async (id) => {
     setLoading(true);
-    console.log('Doc id>>', constWatchlist);
+    const watchlistRef = doc(db, 'watchlists', id);
 
     try {
-      const watchlistRef = doc(db, 'watchlists', id);
-
       await updateDoc(watchlistRef, {
         list: arrayUnion({
           id: id,

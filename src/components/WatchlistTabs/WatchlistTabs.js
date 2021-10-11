@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -49,66 +49,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function WatchlistTabs() {
-  const watchlists = useSelector((state) => state.auth.watchlists);
-  console.log('WATCHLISTS>>>', watchlists);
+export default function WatchlistTabs({
+  activeWatchlist,
+  setActiveWatchlist,
+  watchlists,
+}) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  console.log('Active wathclist is >>>>>', activeWatchlist);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Tabs
-          value={value}
-          onChange={handleChange}
+          value={activeWatchlist}
+          onChange={(event, value) => setActiveWatchlist(value)}
           indicatorColor="primary"
           textColor="primary"
           variant="scrollable"
           scrollButtons="auto"
           aria-label="scrollable auto tabs example"
         >
-          {/* <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Four" {...a11yProps(3)} />
-          <Tab label="Item Five" {...a11yProps(4)} />
-          <Tab label="Item Six" {...a11yProps(5)} />
-          <Tab label="Item Seven" {...a11yProps(6)} /> */}
           {watchlists?.map((watchlist, index) => (
             <Tab label={watchlist.name} index={index} {...a11yProps(index)} />
           ))}
         </Tabs>
       </AppBar>
-      {/* <TabPanel value={value} index={0}>
-        Item One
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel>
-      <TabPanel value={value} index={3}>
-        Item Four
-      </TabPanel>
-      <TabPanel value={value} index={4}>
-        Item Five
-      </TabPanel>
-      <TabPanel value={value} index={5}>
-        Item Six
-      </TabPanel>
-      <TabPanel value={value} index={6}>
-        Item Seven
-      </TabPanel> */}
-      {watchlists?.map((watchlist, index) => (
-        <TabPanel value={watchlist.id} index={index}>
-          {watchlist.name}
-        </TabPanel>
-      ))}
     </div>
   );
 }

@@ -71,9 +71,9 @@ const SingleContent = ({
     }
   };
 
-  const addMovieToWatchlist = async (id) => {
+  const addMovieToWatchlist = async (watchlistId) => {
     setLoading(true);
-    const watchlistRef = doc(db, 'watchlists', id);
+    const watchlistRef = doc(db, 'watchlists', watchlistId);
 
     try {
       await updateDoc(watchlistRef, {

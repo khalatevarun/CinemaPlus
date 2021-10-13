@@ -8,6 +8,7 @@ import {
   doc,
   arrayUnion,
   updateDoc,
+  arrayRemove,
 } from '@firebase/firestore';
 import { db } from '../../firebase';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
@@ -25,6 +26,9 @@ const SingleContent = ({
   media_type,
   vote_average,
   customRef,
+  remove,
+  removeWatchlistId,
+  getWatchlistData,
 }) => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const userId = useSelector((state) => state.auth.user.uid);
@@ -35,9 +39,15 @@ const SingleContent = ({
 
   const [openWatchlistOptions, setOpenWatchlistOptions] = useState(false);
 
+  const [visibleContentModal, setVisibleContentModal] = useState(false);
+
   const [constWatchlist, setConstWatchlist] = useState(null);
 
   const [loading, setLoading] = useState(false);
+
+  const toggleContentModal = () => {
+    setVisibleContentModal(!visibleContentModal);
+  };
 
   const addNewWatchlist = async (newWatchListName) => {
     setLoading(true);
@@ -93,6 +103,30 @@ const SingleContent = ({
     }
   };
 
+  const removeMovieFromWatchlist = async (watchlistId) => {
+    setLoading(true);
+    const watchlistRef = doc(db, 'watchlists', watchlistId);
+
+    try {
+      await updateDoc(watchlistRef, {
+        list: arrayRemove({
+          id: id,
+          poster: poster,
+          title: title,
+          date: date,
+          media_type: media_type,
+          vote_average: vote_average,
+        }),
+      });
+      toggleContentModal();
+      getWatchlistData(watchlistId);
+    } catch (e) {
+      console.error('Error removing document: ', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleAddWatchlist = () => {
     if (!isLoggedIn) {
       // prompt user to login first
@@ -110,7 +144,12 @@ const SingleContent = ({
       handleAddWatchlist={handleAddWatchlist}
       openWatchlistOptions={openWatchlistOptions}
       addMovieToWatchlist={addMovieToWatchlist}
+      removeMovieFromWatchlist={removeMovieFromWatchlist}
       addNewWatchlist={addNewWatchlist}
+      remove={remove}
+      removeWatchlistId={removeWatchlistId}
+      visibleContentModal={visibleContentModal}
+      toggleContentModal={toggleContentModal}
     >
       <Badge
         className="custom-badge"

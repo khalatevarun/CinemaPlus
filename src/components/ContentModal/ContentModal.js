@@ -5,6 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteIcon from '@material-ui/icons/Delete';
 import axios from 'axios';
 import {
   img_500,
@@ -54,9 +55,14 @@ export default function ContentModal({
   openWatchlistOptions,
   addMovieToWatchlist,
   addNewWatchlist,
+  removeMovieFromWatchlist,
+  remove,
+  removeWatchlistId,
+  toggleContentModal,
+  visibleContentModal,
 }) {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
+
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
   const [newWatchListName, setNewWatchListName] = useState();
@@ -69,14 +75,6 @@ export default function ContentModal({
 
   const handleNewWatchlistForm = () => {
     setOpenNewWatchlistForm(!openNewWatchlistForm);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   const fetchData = async () => {
@@ -104,7 +102,7 @@ export default function ContentModal({
     <>
       <div
         type="button"
-        onClick={handleOpen}
+        onClick={toggleContentModal}
         className="media"
         style={{ cursor: 'pointer' }}
         color="inherit"
@@ -116,15 +114,15 @@ export default function ContentModal({
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
-        onClose={handleClose}
+        open={visibleContentModal}
+        onClose={toggleContentModal}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <Fade in={open}>
+        <Fade in={visibleContentModal}>
           {content && (
             <div className={classes.paper}>
               <div className="ContentModal">
@@ -175,14 +173,27 @@ export default function ContentModal({
                     >
                       Watch the Trailer
                     </Button>
-                    <Button
-                      variant="contained"
-                      startIcon={<FavoriteIcon />}
-                      onClick={() => handleAddWatchlist()}
-                      color="primary"
-                    >
-                      Add to Watchlist
-                    </Button>
+                    {remove ? (
+                      <Button
+                        variant="contained"
+                        startIcon={<DeleteIcon />}
+                        onClick={() =>
+                          removeMovieFromWatchlist(removeWatchlistId)
+                        }
+                        color="primary"
+                      >
+                        Remove from watchlist
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        startIcon={<FavoriteIcon />}
+                        onClick={() => handleAddWatchlist()}
+                        color="primary"
+                      >
+                        Add to Watchlist
+                      </Button>
+                    )}
                   </div>
                 </div>
               </div>

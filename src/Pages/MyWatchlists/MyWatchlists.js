@@ -9,6 +9,7 @@ import './MyWatchlist.css';
 import ShareIcon from '@material-ui/icons/Share';
 import EditIcon from '@material-ui/icons/Edit';
 import { Fab } from '@material-ui/core';
+import requireAuth from '../../hocs/requireAuth';
 
 const style = {
   margin: 0,
@@ -27,7 +28,8 @@ const style2 = {
   position: 'fixed',
 };
 const MyWatchlists = () => {
-  const watchlists = useSelector((state) => state.auth.watchlists);
+  const watchlists = useSelector((state) => state.auth?.watchlists);
+  const name = useSelector((state) => state.auth?.name);
 
   const [activeWatchlist, setActiveWatchlist] = useState(0);
 
@@ -53,8 +55,8 @@ const MyWatchlists = () => {
     try {
       await navigator.share({
         title: 'Cinemaplus',
-        text: 'Check this watchlist',
-        url: `/watchlist:${watchlists[activeWatchlist].id}`,
+        text: `Check this watchlist created by ${name}`,
+        url: `/watchlist/${watchlists[activeWatchlist].id}`,
       });
     } catch (err) {}
   };
@@ -67,12 +69,13 @@ const MyWatchlists = () => {
 
   return (
     <div>
+      <span className="pageTitle">My Watchlists</span>
       <WatchlistTabs
         activeWatchlist={activeWatchlist}
         setActiveWatchlist={setActiveWatchlist}
         watchlists={watchlists}
       />
-      <div class="mywatchlists">
+      <div class="movie_cards">
         {watchlistData &&
           watchlistData.map((data) => (
             <>
@@ -101,4 +104,4 @@ const MyWatchlists = () => {
   );
 };
 
-export default MyWatchlists;
+export default requireAuth(MyWatchlists);

@@ -67,7 +67,7 @@ export default function ContentModal({
   const [video, setVideo] = useState();
   const [newWatchListName, setNewWatchListName] = useState();
   const [openNewWatchlistForm, setOpenNewWatchlistForm] = useState(false);
-  const watchlists = useSelector((state) => state.auth.watchlists);
+  const watchlists = useSelector((state) => state.auth?.watchlists);
   console.log(
     'AWDASDHAS AS>>>>>>>>>>>>>>',
     useSelector((state) => state.auth)
@@ -203,7 +203,7 @@ export default function ContentModal({
                 open={openWatchlistOptions}
               >
                 <DialogTitle id="simple-dialog-title">
-                  Add to watchlistrwerw
+                  Add to watchlist
                 </DialogTitle>
                 <List>
                   {watchlists?.map((watchlist) => (
@@ -239,7 +239,7 @@ export default function ContentModal({
                     autoFocus
                     margin="dense"
                     id="name"
-                    label="Email Address"
+                    label="Watchlist Name"
                     type="email"
                     fullWidth
                     onChange={(e) => setNewWatchListName(e.target.value)}

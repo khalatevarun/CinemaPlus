@@ -10,6 +10,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import Divider from '@material-ui/core/Divider';
+
 import { TextField, Grid } from '@material-ui/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
@@ -34,6 +36,7 @@ export default function Login() {
     logout,
   } = useFirebaseAuth();
   const [email, setEmail] = useState(null);
+  const [formType, setFormType] = useState(false);
   const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -94,6 +97,7 @@ export default function Login() {
       const response = await signInInWithEmailAndPassword(email, password);
       const docRef = doc(db, 'users', response.user.uid);
       const docSnap = await getDoc(docRef);
+      console.log('NAME OF LOGGED IN USER IS>>>', docSnap.data().name);
       setName(docSnap.data().name);
 
       const q = query(
@@ -109,9 +113,12 @@ export default function Login() {
         name: doc.data().name,
         id: doc.id,
       }));
-      dispatch({ type: LOGIN, data: { user, watchlists, name } });
-      // history.push('/movies');
-      history.push('/mywatchlists');
+      dispatch({
+        type: LOGIN,
+        data: { user, watchlists, name: docSnap.data().name },
+      });
+      history.push('/movies');
+      // history.push('/mywatchlists');
     } catch (err) {
       if (err.code === 'auth/wrong-password') {
         setErrorMessage('You have entered wrong password. Please try again!');
@@ -144,6 +151,10 @@ export default function Login() {
 
   const auth = getAuth();
 
+  const toggleForm = () => {
+    setFormType(!formType);
+  };
+
   const getWishlists = async (user) => {
     const q = query(
       collection(db, 'wishlists'),
@@ -161,50 +172,87 @@ export default function Login() {
       {/* <Link to="/">
         <img src={logo} alt="" height="300px" />
       </Link> */}
-      <div className="login__container">
-        <h1>Sign-in</h1>
-        <form onSubmit={loginUser}>
-          <Grid container direction="column">
-            <TextField
-              variant="outlined"
-              label="Full Name"
-              required
-              type="text"
-              value={name}
-              onChange={handleNameChange}
-            />
-            <br />
+      {formType ? (
+        <div className="login__container">
+          <h1>Welcome Back to CinemaPlus</h1>
+          <form onSubmit={(e) => loginUser(e)}>
+            <Grid container direction="column">
+              <TextField
+                variant="outlined"
+                label="Email"
+                required
+                type="text"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <br />
 
-            <TextField
-              variant="outlined"
-              label="Email"
-              required
-              type="text"
-              value={email}
-              onChange={handleEmailChange}
-            />
-            <br />
+              <TextField
+                type="password"
+                variant="outlined"
+                label="Password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <br />
 
-            <TextField
-              type="password"
-              variant="outlined"
-              label="Password"
-              required
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <br />
+              <Button variant="contained" type="submit">
+                Login
+              </Button>
+              <div className="change-form-link">
+                Don't have an account? <span onClick={toggleForm}>Sign Up</span>
+              </div>
+            </Grid>
+          </form>
+        </div>
+      ) : (
+        <div className="login__container">
+          <h1>Welcome to CinemaPlus</h1>
+          <form onSubmit={(e) => signupUser(e)}>
+            <Grid container direction="column">
+              <TextField
+                variant="outlined"
+                label="Full Name"
+                required
+                type="text"
+                value={name}
+                onChange={handleNameChange}
+              />
+              <br />
 
-            <Button variant="contained" type="submit">
-              Sign In
-            </Button>
+              <TextField
+                variant="outlined"
+                label="Email"
+                required
+                type="text"
+                value={email}
+                onChange={handleEmailChange}
+              />
+              <br />
 
-            <button className="login_registerButton" onClick={signupUser}>
-              Create your account
-            </button>
-          </Grid>
-        </form>
-      </div>
+              <TextField
+                type="password"
+                variant="outlined"
+                label="Password"
+                required
+                value={password}
+                onChange={handlePasswordChange}
+              />
+              <br />
+
+              <Button variant="contained" type="submit">
+                Sign Up
+              </Button>
+
+              <div className="change-form-link">
+                Already have an account? <span onClick={toggleForm}>Login</span>
+              </div>
+            </Grid>
+          </form>
+        </div>
+      )}
+
       <Dialog
         open={open}
         onClose={handleClose}

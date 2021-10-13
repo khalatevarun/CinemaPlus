@@ -2,6 +2,7 @@ import * as TYPES from '../../constants/actionTypes';
 
 const initialState = {
   user: {},
+  name: null,
   isLoggedIn: false,
   watchlists: [],
 };
@@ -31,9 +32,9 @@ export default function authReducer(state = initialState, action) {
       };
     case TYPES.LOGOUT:
       return {
-        ...state,
         user: null,
         isLoggedIn: false,
+        watchlists: [],
         name: null,
       };
     default:

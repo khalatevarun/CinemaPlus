@@ -9,7 +9,7 @@
 }
 
 .login__container {
-  min-width: 300px;
+  width: 300px;
   height: fit-content;
   text-align: center;
 
@@ -59,4 +59,12 @@
   border: 1px solid;
   margin-top: 10px;
   border-color: darkgray;
+}
+.change-form-link {
+  margin-top: 10px;
+}
+.change-form-link > span {
+  cursor: pointer;
+  font-weight: bold;
+  color: #21e18c;
 }

@@ -9,9 +9,27 @@
   /* padding-bottom: 70px; */
 }
 
+.movie_cards {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px 90px;
+  align-items: center;
+  justify-content: center;
+}
+
+.genre_chips {
+  padding: 0px 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 700px) {
   .app {
     padding-top: 40px;
+  }
+  .genre_chips {
+    padding: 0px 30px;
   }
 }
 
@@ -20,7 +38,7 @@
   justify-content: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 2vw;
-  padding: 4px;
+  padding: 10px;
   color: white;
 }
 

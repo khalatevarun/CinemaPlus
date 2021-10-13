@@ -2,7 +2,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import SimpleBottomNavigation from './components/MainNav';
-import { Container } from '@material-ui/core';
+
 import React from 'react';
 import Trending from './Pages/Trending/Trending';
 import Movies from './Pages/Movies/Movies';
@@ -12,6 +12,7 @@ import Login from './Pages/Login/Login';
 import store from './redux/store/store';
 import { Provider } from 'react-redux';
 import MyWatchlists from './Pages/MyWatchlists/MyWatchlists';
+import Watchlist from './Pages/Watchlist/Watchlist';
 
 function App() {
   return (
@@ -26,7 +27,9 @@ function App() {
               <Route path="/movies" component={Movies} />
               <Route path="/series" component={Series} />
               <Route path="/search" component={Search} />
+              <Route path="/watchlist/:wishlistId" component={Watchlist} />
               <Route path="/mywatchlists" component={MyWatchlists} />
+              <SimpleBottomNavigation />
             </>
           </Switch>
         </div>

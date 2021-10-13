@@ -24,7 +24,7 @@ const Genres = ({
 
   const fetchGenres = async () => {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`,
+      `https://api.themoviedb.org/3/genre/${type}/list?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
     );
 
     setGenres(data.genres);
@@ -36,7 +36,7 @@ const Genres = ({
   }, []);
 
   return (
-    <div style={{ padding: '6px 0' }}>
+    <div className="genre_chips">
       {selectedGenres &&
         selectedGenres.map((genre) => (
           <Chip

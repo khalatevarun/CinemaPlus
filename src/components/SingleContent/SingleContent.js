@@ -30,9 +30,9 @@ const SingleContent = ({
   removeWatchlistId,
   getWatchlistData,
 }) => {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  const userId = useSelector((state) => state.auth.user.uid);
-  const userName = useSelector((state) => state.auth.name);
+  const isLoggedIn = useSelector((state) => state.auth?.isLoggedIn);
+  const userId = useSelector((state) => state.auth.user?.uid);
+  const userName = useSelector((state) => state.auth?.name);
   const dispatch = useDispatch();
 
   console.log('ISLLOG ED IN>>>>', isLoggedIn);

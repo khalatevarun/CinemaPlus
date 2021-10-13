@@ -63,7 +63,7 @@ const Movies = () => {
         setSelectedGenres={setSelectedGenres}
         setPage={setPage}
       />
-      <div className="movies">
+      <div className="movie_cards">
         {list &&
           list.map((c, index) => (
             <SingleContent

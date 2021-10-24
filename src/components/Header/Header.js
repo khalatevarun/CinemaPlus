@@ -62,13 +62,19 @@ const Header = () => {
       </div>
       <div>
         {isLoggedIn ? (
-          <IconButton
-            aria-controls="simple-menu"
-            aria-haspopup="true"
-            onClick={handleClick}
-          >
-            <AccountCircleIcon style={{ color: 'white' }} fontSize="large" />
-          </IconButton>
+          <div className="header_loggedin">
+            <div className="header_greeting">
+              <div>Hello👋</div>
+              <div>{userName}</div>
+            </div>
+            <IconButton
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClick}
+            >
+              <AccountCircleIcon style={{ color: 'white' }} fontSize="large" />
+            </IconButton>
+          </div>
         ) : (
           <Button
             type="text"

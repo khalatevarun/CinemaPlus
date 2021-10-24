@@ -24,6 +24,13 @@
 .header__greetings {
   margin-left: 15px;
 }
+.header_loggedin {
+  display: flex;
+  align-items: center;
+}
+.header_greeting {
+  font-size: small;
+}
 
 @media (max-width: 1000px) {
   .header {

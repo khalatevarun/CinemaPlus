@@ -33,7 +33,6 @@ export default function Login() {
     authenticated,
     signUpWithEmailAndPassword,
     user,
-    logout,
   } = useFirebaseAuth();
   const [email, setEmail] = useState(null);
   const [formType, setFormType] = useState(false);

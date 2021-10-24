@@ -68,10 +68,6 @@ export default function ContentModal({
   const [newWatchListName, setNewWatchListName] = useState();
   const [openNewWatchlistForm, setOpenNewWatchlistForm] = useState(false);
   const watchlists = useSelector((state) => state.auth?.watchlists);
-  console.log(
-    'AWDASDHAS AS>>>>>>>>>>>>>>',
-    useSelector((state) => state.auth)
-  );
 
   const handleNewWatchlistForm = () => {
     setOpenNewWatchlistForm(!openNewWatchlistForm);
@@ -206,11 +202,11 @@ export default function ContentModal({
                   Add to watchlist
                 </DialogTitle>
                 <List>
-                  {watchlists?.map((watchlist) => (
+                  {watchlists?.map((watchlist, index) => (
                     <ListItem
                       button
                       onClick={() => addMovieToWatchlist(watchlist.id)}
-                      key={watchlist}
+                      key={index}
                     >
                       <ListItemText primary={watchlist.name} />
                     </ListItem>
@@ -221,10 +217,11 @@ export default function ContentModal({
                     button
                     onClick={() => handleNewWatchlistForm()}
                   >
-                    <ListItemText primary="Add account" />
+                    <ListItemText primary="Add new watchlist" />
                   </ListItem>
                 </List>
               </Dialog>
+
               <Dialog
                 open={openNewWatchlistForm}
                 onClose={() => handleNewWatchlistForm()}

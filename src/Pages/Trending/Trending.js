@@ -24,7 +24,7 @@ const Trending = () => {
   }, [page]);
 
   return (
-    <div>
+    <div className="page_container">
       <span className="pageTitle">Trending</span>
       <div className="movie_cards">
         {content &&

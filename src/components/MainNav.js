@@ -13,7 +13,7 @@ import { useState } from 'react';
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+    width: '100vw',
     position: 'fixed',
     bottom: 0,
     backgroundColor: '#1a2634',

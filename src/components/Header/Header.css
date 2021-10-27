@@ -34,7 +34,7 @@
 
 @media (max-width: 1000px) {
   .header {
-    padding-top: 10px;
+    padding: 10px 20px;
     font-size: 5.5vw;
   }
 }

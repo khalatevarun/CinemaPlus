@@ -32,14 +32,11 @@
 }
 
 @media (max-width: 700px) {
-  .app {
-    padding-top: 40px;
-  }
   .genre_chips {
     padding: 0px 30px;
   }
   .movie_cards {
-    padding: 15px 30px 0px 30px;
+    padding: 10px 20px 0px 20px;
   }
 }
 

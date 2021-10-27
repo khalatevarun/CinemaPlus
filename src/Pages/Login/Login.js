@@ -19,6 +19,7 @@ import {
   createMuiTheme,
   ThemeProvider,
   withStyles,
+  Link,
 } from '@material-ui/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
@@ -33,6 +34,7 @@ import {
 import { db } from '../../firebase';
 import { useDispatch } from 'react-redux';
 import { LOGIN } from '../../constants/actionTypes';
+import LoadingBackdrop from '../../components/LoadingBackdrop/LoadingBackdrop';
 
 const CssTextField = withStyles({
   root: {
@@ -199,6 +201,7 @@ export default function Login() {
 
   return (
     <div className="login">
+      <LoadingBackdrop loading={loading} />
       {/* <Link to="/">
         <img src={logo} alt="" height="300px" />
       </Link> */}
@@ -234,6 +237,28 @@ export default function Login() {
                 Don't have an account? <span onClick={toggleForm}>Sign Up</span>
               </div>
             </Grid>
+            <Divider
+              style={{
+                marginTop: '10px',
+                borderColor: 'grey',
+                border: '0.5px solid grey',
+                backgroundColor: 'grey',
+              }}
+            />
+            <div className="change-form-link">
+              Go back to{' '}
+              <Link
+                to="/"
+                underline="none"
+                style={{
+                  cursor: 'pointer',
+                  fontWeight: 'bold',
+                  color: '#21e18c',
+                }}
+              >
+                <span>Home</span>
+              </Link>
+            </div>
           </form>
         </div>
       ) : (
@@ -280,6 +305,28 @@ export default function Login() {
               </div>
             </Grid>
           </form>
+          <Divider
+            style={{
+              marginTop: '10px',
+              borderColor: 'grey',
+              border: '0.5px solid grey',
+              backgroundColor: 'grey',
+            }}
+          />
+          <div className="change-form-link">
+            Go back to{' '}
+            <Link
+              to="/"
+              underline="none"
+              style={{
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                color: '#21e18c',
+              }}
+            >
+              <span>Home</span>
+            </Link>
+          </div>
         </div>
       )}
 

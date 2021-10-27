@@ -1,5 +1,5 @@
 import { img_300, unavailable } from '../../config/config';
-import { Badge } from '@material-ui/core';
+import { Badge, Snackbar } from '@material-ui/core';
 import './SingleContent.css';
 import ContentModal from '../ContentModal/ContentModal';
 import {
@@ -17,6 +17,8 @@ import { useSelector } from 'react-redux';
 import { query, where } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { ADD_WATCHLIST } from '../../constants/actionTypes';
+import LoadingBackdrop from '../LoadingBackdrop/LoadingBackdrop';
+import { Alert } from '@material-ui/lab';
 
 const SingleContent = ({
   id,
@@ -40,8 +42,10 @@ const SingleContent = ({
   const [openWatchlistOptions, setOpenWatchlistOptions] = useState(false);
 
   const [visibleContentModal, setVisibleContentModal] = useState(false);
-
-  const [constWatchlist, setConstWatchlist] = useState(null);
+  const [openNewWatchlistForm, setOpenNewWatchlistForm] = useState(false);
+  const handleNewWatchlistForm = () => {
+    setOpenNewWatchlistForm(!openNewWatchlistForm);
+  };
 
   const [loading, setLoading] = useState(false);
 
@@ -72,12 +76,16 @@ const SingleContent = ({
         type: ADD_WATCHLIST,
         data: { name: newWatchListName, id: docRef.id },
       });
+      <Snackbar open={true} autoHideDuration={2000}>
+        <Alert severity="success">New Watchlist Added Successfully!</Alert>
+      </Snackbar>;
       //TODO: write a function to add the new watchlist created to the global state
-      setConstWatchlist(docRef.id);
     } catch (e) {
       console.error('Error adding document: ', e);
     } finally {
       setLoading(false);
+      handleAddWatchlist();
+      handleNewWatchlistForm();
     }
   };
 
@@ -100,6 +108,7 @@ const SingleContent = ({
       console.error('Error adding document: ', e);
     } finally {
       setLoading(false);
+      handleAddWatchlist();
     }
   };
 
@@ -150,6 +159,8 @@ const SingleContent = ({
       removeWatchlistId={removeWatchlistId}
       visibleContentModal={visibleContentModal}
       toggleContentModal={toggleContentModal}
+      handleNewWatchlistForm={handleNewWatchlistForm}
+      openNewWatchlistForm={openNewWatchlistForm}
     >
       <Badge
         className="custom-badge"
@@ -173,6 +184,7 @@ const SingleContent = ({
         </div>
         <div className="date">{date}</div>
       </div>
+      <LoadingBackdrop loading={loading} />
     </ContentModal>
   );
 };

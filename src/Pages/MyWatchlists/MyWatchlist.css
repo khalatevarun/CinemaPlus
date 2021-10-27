@@ -1,1 +1,4 @@
-
+.watchlist_cards {
+  display: flex;
+  padding: 60px;
+}

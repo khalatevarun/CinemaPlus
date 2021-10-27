@@ -68,3 +68,6 @@
   font-weight: bold;
   color: #21e18c;
 }
+.MuiFormLabel-root {
+  color: white;
+}

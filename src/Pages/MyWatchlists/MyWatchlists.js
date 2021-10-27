@@ -15,7 +15,7 @@ const style = {
   margin: 0,
   top: 'auto',
   right: 20,
-  bottom: 20,
+  bottom: 80,
   left: 'auto',
   position: 'fixed',
 };
@@ -23,7 +23,7 @@ const style2 = {
   margin: 0,
   top: 'auto',
   right: 20,
-  bottom: 100,
+  bottom: 150,
   left: 'auto',
   position: 'fixed',
 };
@@ -75,7 +75,7 @@ const MyWatchlists = () => {
         setActiveWatchlist={setActiveWatchlist}
         watchlists={watchlists}
       />
-      <div class="movie_cards">
+      <div class="watchlist_cards">
         {watchlistData &&
           watchlistData.map((data) => (
             <>

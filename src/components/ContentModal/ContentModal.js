@@ -27,6 +27,13 @@ import {
 import './ContentModal.css';
 import Carousel from '../Carousel/Carousel';
 import { useSelector } from 'react-redux';
+import { dividerClasses } from '@mui/material';
+import {
+  Grid,
+  createMuiTheme,
+  ThemeProvider,
+  withStyles,
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -46,6 +53,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'blue',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'blue',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'blue',
+        color: 'blue',
+      },
+
+      '&:hover fieldset': {
+        borderColor: 'blue',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'blue',
+      },
+    },
+  },
+})(TextField);
+
 export default function ContentModal({
   children,
   media_type,
@@ -60,18 +91,16 @@ export default function ContentModal({
   removeWatchlistId,
   toggleContentModal,
   visibleContentModal,
+  handleNewWatchlistForm,
+  openNewWatchlistForm,
 }) {
   const classes = useStyles();
 
   const [content, setContent] = useState();
   const [video, setVideo] = useState();
   const [newWatchListName, setNewWatchListName] = useState();
-  const [openNewWatchlistForm, setOpenNewWatchlistForm] = useState(false);
-  const watchlists = useSelector((state) => state.auth?.watchlists);
 
-  const handleNewWatchlistForm = () => {
-    setOpenNewWatchlistForm(!openNewWatchlistForm);
-  };
+  const watchlists = useSelector((state) => state.auth?.watchlists);
 
   const fetchData = async () => {
     const { data } = await axios.get(
@@ -197,10 +226,11 @@ export default function ContentModal({
                 onClose={handleAddWatchlist}
                 aria-labelledby="simple-dialog-title"
                 open={openWatchlistOptions}
+                className="custom-dialog"
               >
-                <DialogTitle id="simple-dialog-title">
-                  Add to watchlist
-                </DialogTitle>
+                <div className="dialog-title" id="simple-dialog-title">
+                  Add To Watchlist
+                </div>
                 <List>
                   {watchlists?.map((watchlist, index) => (
                     <ListItem
@@ -208,7 +238,7 @@ export default function ContentModal({
                       onClick={() => addMovieToWatchlist(watchlist.id)}
                       key={index}
                     >
-                      <ListItemText primary={watchlist.name} />
+                      <div> {watchlist.name} </div>
                     </ListItem>
                   ))}
 
@@ -217,7 +247,7 @@ export default function ContentModal({
                     button
                     onClick={() => handleNewWatchlistForm()}
                   >
-                    <ListItemText primary="Add new watchlist" />
+                    <div>Add New Watchlist</div>
                   </ListItem>
                 </List>
               </Dialog>
@@ -227,12 +257,12 @@ export default function ContentModal({
                 onClose={() => handleNewWatchlistForm()}
                 aria-labelledby="form-dialog-title"
               >
-                <DialogTitle id="form-dialog-title">New Watchlist</DialogTitle>
+                <div className="dialog-title">New Watchlist</div>
                 <DialogContent>
-                  <DialogContentText>
+                  <div>
                     Please enter the name of the new watchlist to be created.
-                  </DialogContentText>
-                  <TextField
+                  </div>
+                  <CssTextField
                     autoFocus
                     margin="dense"
                     id="name"
@@ -244,7 +274,7 @@ export default function ContentModal({
                 </DialogContent>
                 <DialogActions>
                   <Button
-                    onClick={() => handleNewWatchlistForm}
+                    onClick={() => handleNewWatchlistForm()}
                     color="primary"
                   >
                     Cancel

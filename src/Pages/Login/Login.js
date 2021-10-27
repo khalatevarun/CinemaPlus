@@ -11,8 +11,15 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Divider from '@material-ui/core/Divider';
+import { green } from '@material-ui/core/colors';
 
-import { TextField, Grid } from '@material-ui/core';
+import {
+  TextField,
+  Grid,
+  createMuiTheme,
+  ThemeProvider,
+  withStyles,
+} from '@material-ui/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
   collection,
@@ -26,6 +33,30 @@ import {
 import { db } from '../../firebase';
 import { useDispatch } from 'react-redux';
 import { LOGIN } from '../../constants/actionTypes';
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: 'white',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: 'green',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+        color: 'white',
+      },
+
+      '&:hover fieldset': {
+        borderColor: 'green',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'green',
+      },
+    },
+  },
+})(TextField);
 
 export default function Login() {
   const {
@@ -176,7 +207,7 @@ export default function Login() {
           <h1>Welcome Back to CinemaPlus</h1>
           <form onSubmit={(e) => loginUser(e)}>
             <Grid container direction="column">
-              <TextField
+              <CssTextField
                 variant="outlined"
                 label="Email"
                 required
@@ -186,7 +217,7 @@ export default function Login() {
               />
               <br />
 
-              <TextField
+              <CssTextField
                 type="password"
                 variant="outlined"
                 label="Password"
@@ -210,7 +241,7 @@ export default function Login() {
           <h1>Welcome to CinemaPlus</h1>
           <form onSubmit={(e) => signupUser(e)}>
             <Grid container direction="column">
-              <TextField
+              <CssTextField
                 variant="outlined"
                 label="Full Name"
                 required
@@ -220,7 +251,7 @@ export default function Login() {
               />
               <br />
 
-              <TextField
+              <CssTextField
                 variant="outlined"
                 label="Email"
                 required
@@ -230,7 +261,7 @@ export default function Login() {
               />
               <br />
 
-              <TextField
+              <CssTextField
                 type="password"
                 variant="outlined"
                 label="Password"

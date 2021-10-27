@@ -28,7 +28,6 @@ const Header = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [name, setName] = useState();
   const handleLogout = () => {
-    //add logout action redux firebase
     handleClose();
     logout();
     dispatch({ type: LOGOUT });

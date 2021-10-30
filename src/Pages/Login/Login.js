@@ -71,9 +71,9 @@ export default function Login() {
     signUpWithEmailAndPassword,
     user,
   } = useFirebaseAuth();
-  const [email, setEmail] = useState(null);
-  const [formType, setFormType] = useState(false);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState('dummy@123gmail.com');
+  const [formType, setFormType] = useState(true);
+  const [password, setPassword] = useState('password');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [wishlists, setWishlists] = useState([]);

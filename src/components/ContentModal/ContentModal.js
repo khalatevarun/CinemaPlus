@@ -276,12 +276,14 @@ export default function ContentModal({
                   <Button
                     onClick={() => handleNewWatchlistForm()}
                     color="primary"
+                    variant="outlined"
                   >
                     Cancel
                   </Button>
                   <Button
                     onClick={() => addNewWatchlist(newWatchListName)}
                     color="primary"
+                    variant="contained"
                   >
                     Save
                   </Button>

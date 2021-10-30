@@ -68,6 +68,9 @@
   font-weight: bold;
   color: #21e18c;
 }
-.MuiFormLabel-root {
-  color: white;
+.login .MuiFormLabel-root {
+  color: white !important;
+}
+.login .MuiInputBase-input {
+  color: white !important;
 }

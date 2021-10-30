@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { useSelector } from 'react-redux';
+import './WatchlistTab.css';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -71,7 +72,12 @@ export default function WatchlistTabs({
           aria-label="scrollable auto tabs example"
         >
           {watchlists?.map((watchlist, index) => (
-            <Tab label={watchlist.name} index={index} {...a11yProps(index)} />
+            <Tab
+              className="watchlist-tab"
+              label={watchlist.name}
+              index={index}
+              {...a11yProps(index)}
+            />
           ))}
         </Tabs>
       </AppBar>

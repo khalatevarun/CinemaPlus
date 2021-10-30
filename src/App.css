@@ -12,7 +12,7 @@
 .movie_cards {
   display: flex;
   flex-wrap: wrap;
-  padding: 30px 60px 0px 60px;
+  padding: 30px 120px 0px 120px;
   align-items: center;
   justify-content: space-between;
 }
@@ -28,7 +28,11 @@
 .genre_chips {
   align-items: center;
   justify-content: center;
-  padding: 0px 60px;
+  padding: 0px 120px;
+}
+.MuiButton-label {
+  font-weight: bolder;
+  text-transform: none;
 }
 
 @media (max-width: 700px) {

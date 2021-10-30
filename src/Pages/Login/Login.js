@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link as RouterLink, Redirect, useHistory } from 'react-router-dom';
+import {
+  Link,
+  Link as RouterLink,
+  Redirect,
+  useHistory,
+} from 'react-router-dom';
 // import ErrorDialog from '../components/ErrorDialog';
 import { useFirebaseAuth } from '../../hooks/useFirebaseAuth';
 
@@ -19,7 +24,6 @@ import {
   createMuiTheme,
   ThemeProvider,
   withStyles,
-  Link,
 } from '@material-ui/core';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import {
@@ -202,17 +206,16 @@ export default function Login() {
   return (
     <div className="login">
       <LoadingBackdrop loading={loading} />
-      {/* <Link to="/">
-        <img src={logo} alt="" height="300px" />
-      </Link> */}
+
       {formType ? (
         <div className="login__container">
           <h1>Welcome Back to CinemaPlus</h1>
-          <form onSubmit={(e) => loginUser(e)}>
+          <form onSubmit={loginUser} autoComplete="off">
             <Grid container direction="column">
               <CssTextField
                 variant="outlined"
                 label="Email"
+                autoComplete="off"
                 required
                 type="text"
                 value={email}
@@ -223,6 +226,7 @@ export default function Login() {
               <CssTextField
                 type="password"
                 variant="outlined"
+                autoComplete="off"
                 label="Password"
                 required
                 value={password}
@@ -249,11 +253,11 @@ export default function Login() {
               Go back to{' '}
               <Link
                 to="/"
-                underline="none"
                 style={{
                   cursor: 'pointer',
                   fontWeight: 'bold',
                   color: '#21e18c',
+                  textDecoration: 'none',
                 }}
               >
                 <span>Home</span>
@@ -317,11 +321,11 @@ export default function Login() {
             Go back to{' '}
             <Link
               to="/"
-              underline="none"
               style={{
                 cursor: 'pointer',
                 fontWeight: 'bold',
                 color: '#21e18c',
+                textDecoration: 'none',
               }}
             >
               <span>Home</span>

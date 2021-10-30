@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles({
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = useState();
+  const isLoggedIn = useSelector((state) => state.auth?.isLoggedIn);
   const history = useHistory();
 
   useEffect(() => {
@@ -58,12 +60,14 @@ export default function SimpleBottomNavigation() {
         icon={<SearchIcon />}
       />
 
-      <BottomNavigationAction
-        style={{ color: '#21e18c' }}
-        // label="Search"
-        value={2}
-        icon={<FavoriteIcon />}
-      />
+      {isLoggedIn && (
+        <BottomNavigationAction
+          style={{ color: '#21e18c' }}
+          // label="Search"
+          value={2}
+          icon={<FavoriteIcon />}
+        />
+      )}
 
       <BottomNavigationAction
         style={{ color: '#21e18c' }}

@@ -19,6 +19,7 @@ import { useDispatch } from 'react-redux';
 import { ADD_WATCHLIST } from '../../constants/actionTypes';
 import LoadingBackdrop from '../LoadingBackdrop/LoadingBackdrop';
 import { Alert } from '@material-ui/lab';
+import CustomSnackbar from '../CustomSnackbar/CustomSnackbar';
 
 const SingleContent = ({
   id,
@@ -40,6 +41,9 @@ const SingleContent = ({
   console.log('ISLLOG ED IN>>>>', isLoggedIn);
 
   const [openWatchlistOptions, setOpenWatchlistOptions] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarType, setSnackbarType] = useState('');
 
   const [visibleContentModal, setVisibleContentModal] = useState(false);
   const [openNewWatchlistForm, setOpenNewWatchlistForm] = useState(false);
@@ -76,9 +80,10 @@ const SingleContent = ({
         type: ADD_WATCHLIST,
         data: { name: newWatchListName, id: docRef.id },
       });
-      <Snackbar open={true} autoHideDuration={2000}>
-        <Alert severity="success">New Watchlist Added Successfully!</Alert>
-      </Snackbar>;
+      setSnackbarMessage(`Successfully added ${title} to ${newWatchListName}`);
+      setSnackbarOpen(true);
+      setSnackbarType('success');
+
       //TODO: write a function to add the new watchlist created to the global state
     } catch (e) {
       console.error('Error adding document: ', e);
@@ -104,6 +109,9 @@ const SingleContent = ({
           vote_average: vote_average,
         }),
       });
+      setSnackbarMessage(`Successfully added ${title} to watchlist`);
+      setSnackbarOpen(true);
+      setSnackbarType('success');
     } catch (e) {
       console.error('Error adding document: ', e);
     } finally {
@@ -138,7 +146,9 @@ const SingleContent = ({
 
   const handleAddWatchlist = () => {
     if (!isLoggedIn) {
-      // prompt user to login first
+      setSnackbarMessage('Please login to use the watchlist feature');
+      setSnackbarOpen(true);
+      setSnackbarType('warning');
       return;
     }
 
@@ -185,6 +195,12 @@ const SingleContent = ({
         <div className="date">{date}</div>
       </div>
       <LoadingBackdrop loading={loading} />
+      <CustomSnackbar
+        open={snackbarOpen}
+        message={snackbarMessage}
+        type={snackbarType}
+        handleClose={() => setSnackbarOpen(false)}
+      />
     </ContentModal>
   );
 };

@@ -13,18 +13,18 @@ import requireAuth from '../../hocs/requireAuth';
 
 const style = {
   margin: 0,
-  top: 'auto',
-  right: 20,
-  bottom: 80,
-  left: 'auto',
+  top: 200,
+  right: 'auto',
+  bottom: 'auto',
+  left: 20,
   position: 'fixed',
 };
 const style2 = {
   margin: 0,
-  top: 'auto',
-  right: 20,
-  bottom: 150,
-  left: 'auto',
+  top: 250,
+  right: 'auto',
+  bottom: 'auto',
+  left: 20,
   position: 'fixed',
 };
 const MyWatchlists = () => {

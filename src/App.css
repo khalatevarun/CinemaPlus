@@ -42,6 +42,9 @@
   .movie_cards {
     padding: 10px 20px 0px 20px;
   }
+  .watchlist_cards .media {
+    margin-right: 0px;
+  }
 }
 
 .pageTitle {

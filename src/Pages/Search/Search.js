@@ -11,12 +11,16 @@ import SearchIcon from '@material-ui/icons/Search';
 import axios from 'axios';
 import SingleContent from '../../components/SingleContent/SingleContent';
 import CustomPagination from '../../components/Pagination/CustomPagination';
+import { useMemo } from 'react';
 import './Search.css';
+import debounceFunction from '../../utility/debounce';
+import debounce from 'lodash.debounce';
+
 //disable-eslint
 const Search = () => {
   const [type, setType] = useState(0);
   const [page, setPage] = useState(1);
-  const [searchText, setSearchText] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [content, setContent] = useState();
   const [numOfPages, setNumOfPages] = useState();
 
@@ -29,19 +33,27 @@ const Search = () => {
     },
   });
 
-  const fetchSearch = async () => {
-    const { data } = await axios.get(
+  const fetchSearch = debounce((query) => {
+    fetch(
       `https://api.themoviedb.org/3/search/${type ? 'tv' : 'movie'}?api_key=${
         process.env.REACT_APP_API_KEY
-      }&language=en-US&query=${searchText}&page=${page}&include_adult=false`
-    );
-    setContent(data.results);
-    setNumOfPages(data.total_pages);
-  };
+      }&language=en-US&query=${query}&page=${page}&include_adult=false`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('RESULTS >> ', data);
+        setContent(data.results);
+        setNumOfPages(data.total_pages);
+        setSearchQuery(query);
+      })
+      .catch((error) => {
+        setContent([]);
+      });
+  }, 500);
 
   useEffect(() => {
     window.scroll(0, 0);
-    fetchSearch();
+    fetchSearch(searchQuery);
     //eslint-disable-next-line
   }, [type, page]);
 
@@ -55,15 +67,8 @@ const Search = () => {
               className="searchBox"
               label="search"
               variant="filled"
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={(e) => fetchSearch(e.target.value)}
             />
-            <Button
-              variant="contained"
-              style={{ marginLeft: 10 }}
-              onClick={fetchSearch}
-            >
-              <SearchIcon />
-            </Button>
           </div>
 
           <Tabs
@@ -96,8 +101,7 @@ const Search = () => {
                   vote_average={c.vote_average}
                 />
               ))}
-            {searchText &&
-              !content &&
+            {content?.length === 0 &&
               (type ? <h2>No Tv Series Found</h2> : <h2>No Movies Found</h2>)}
           </div>
           {numOfPages > 1 && <CustomPagination setPage={setPage} />}

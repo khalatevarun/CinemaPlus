@@ -15,6 +15,7 @@ import MyWatchlists from './Pages/MyWatchlists/MyWatchlists';
 import Watchlist from './Pages/Watchlist/Watchlist';
 
 function App() {
+  //comment
   return (
     <Provider store={store}>
       <BrowserRouter>

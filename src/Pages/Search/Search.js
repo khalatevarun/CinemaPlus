@@ -1,5 +1,6 @@
 import {
   Button,
+  CircularProgress,
   createMuiTheme,
   Tab,
   Tabs,
@@ -7,14 +8,11 @@ import {
   ThemeProvider,
 } from '@material-ui/core';
 import { useState, useEffect } from 'react';
-import SearchIcon from '@material-ui/icons/Search';
-import axios from 'axios';
 import SingleContent from '../../components/SingleContent/SingleContent';
 import CustomPagination from '../../components/Pagination/CustomPagination';
-import { useMemo } from 'react';
 import './Search.css';
-import debounceFunction from '../../utility/debounce';
 import debounce from 'lodash.debounce';
+import LoadingBackdrop from '../../components/LoadingBackdrop/LoadingBackdrop';
 
 //disable-eslint
 const Search = () => {
@@ -23,6 +21,7 @@ const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [content, setContent] = useState();
   const [numOfPages, setNumOfPages] = useState();
+  const [loading, setLoading] = useState(false);
 
   const darkTheme = createMuiTheme({
     palette: {
@@ -34,6 +33,7 @@ const Search = () => {
   });
 
   const fetchSearch = debounce((query) => {
+    setLoading(true);
     fetch(
       `https://api.themoviedb.org/3/search/${type ? 'tv' : 'movie'}?api_key=${
         process.env.REACT_APP_API_KEY
@@ -41,6 +41,7 @@ const Search = () => {
     )
       .then((res) => res.json())
       .then((data) => {
+        setLoading(false);
         console.log('RESULTS >> ', data);
         setContent(data.results);
         setNumOfPages(data.total_pages);
@@ -50,6 +51,8 @@ const Search = () => {
         setContent([]);
       });
   }, 500);
+
+  console.log('LOADING STATUS >>>>>', loading);
 
   useEffect(() => {
     window.scroll(0, 0);
@@ -89,7 +92,8 @@ const Search = () => {
       <div>
         <div className="page_container">
           <div className="movie_cards">
-            {content &&
+            {!loading &&
+              content &&
               content.map((c) => (
                 <SingleContent
                   key={c.id}
@@ -104,8 +108,14 @@ const Search = () => {
             {content?.length === 0 &&
               (type ? <h2>No Tv Series Found</h2> : <h2>No Movies Found</h2>)}
           </div>
-          {numOfPages > 1 && <CustomPagination setPage={setPage} />}
+
+          {!loading && numOfPages > 1 && <CustomPagination setPage={setPage} />}
         </div>
+        {loading && (
+          <div className="loading_indicator">
+            <CircularProgress color="inherit" />
+          </div>
+        )}
       </div>
     </div>
   );

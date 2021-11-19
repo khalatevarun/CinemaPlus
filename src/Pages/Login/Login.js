@@ -76,7 +76,6 @@ export default function Login() {
   const [password, setPassword] = useState('password');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [wishlists, setWishlists] = useState([]);
   const [name, setName] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -84,7 +83,7 @@ export default function Login() {
   const [open, setOpen] = useState(false);
 
   const handleEmailChange = (event) => {
-    const value = event.target.value;
+    const value = event.target.value.trim();
     setEmail(value);
   };
 
@@ -133,7 +132,7 @@ export default function Login() {
       const response = await signInInWithEmailAndPassword(email, password);
       const docRef = doc(db, 'users', response.user.uid);
       const docSnap = await getDoc(docRef);
-      console.log('NAME OF LOGGED IN USER IS>>>', docSnap.data().name);
+
       setName(docSnap.data().name);
 
       const q = query(
@@ -142,9 +141,7 @@ export default function Login() {
       );
 
       const querySnapshot = await getDocs(q);
-      // setWishlists(
-      //   querySnapshot.docs.map((doc) => ({ name: doc.data().name, id: doc.id }))
-      // );
+
       const watchlists = querySnapshot.docs.map((doc) => ({
         name: doc.data().name,
         id: doc.id,
@@ -154,7 +151,6 @@ export default function Login() {
         data: { user, watchlists, name: docSnap.data().name },
       });
       history.push('/movies');
-      // history.push('/mywatchlists');
     } catch (err) {
       if (err.code === 'auth/wrong-password') {
         setErrorMessage('You have entered wrong password. Please try again!');
@@ -164,22 +160,17 @@ export default function Login() {
           'The email you have provided is not registered yet. Create a new account and login. Thanks!'
         );
         setOpen(true);
+      } else if (err.code === 'auth/invalid-email') {
+        setErrorMessage('Please enter a valid email id.');
+        setOpen(true);
       }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const onCloseErrorDialog = () => {
-    setErrorMessage('');
   };
 
   if (authenticated) {
@@ -189,18 +180,6 @@ export default function Login() {
 
   const toggleForm = () => {
     setFormType(!formType);
-  };
-
-  const getWishlists = async (user) => {
-    const q = query(
-      collection(db, 'wishlists'),
-      where('createdById', '==', user.uid)
-    );
-
-    const querySnapshot = await getDocs(q);
-    setWishlists(
-      querySnapshot.docs.map((doc) => ({ name: doc.data().name, id: doc.id }))
-    );
   };
 
   return (

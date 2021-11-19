@@ -25,29 +25,29 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-  const [value, setValue] = useState();
+  const [active, setActive] = useState();
   const isLoggedIn = useSelector((state) => state.auth?.isLoggedIn);
   const history = useHistory();
 
   useEffect(() => {
-    if (value === 0) history.push('/');
-    if (value === 1) history.push('/search');
-    if (value === 2) history.push('./mywatchlists');
-    if (value === 3) history.push('./movies');
-    if (value === 4) history.push('/series');
-  }, [value, history]);
+    if (active === 0) history.push('/');
+    if (active === 1) history.push('/search');
+    if (active === 2) history.push('./mywatchlists');
+    if (active === 3) history.push('./movies');
+    if (active === 4) history.push('/series');
+  }, [active, history]);
 
   return (
     <BottomNavigation
-      value={value}
+      value={active}
       onChange={(event, newValue) => {
-        setValue(newValue);
+        setActive(newValue);
       }}
       showLabels
       className={classes.root}
     >
       <BottomNavigationAction
-        style={{ color: '#21e18c' }}
+        style={{ color: active === 0 ? '#21e18c' : '#ffffff' }}
         // label="Trending"
         value={0}
         icon={<WhatshotIcon />}
@@ -55,14 +55,14 @@ export default function SimpleBottomNavigation() {
 
       <BottomNavigationAction
         value={1}
-        style={{ color: '#21e18c' }}
+        style={{ color: active === 1 ? '#21e18c' : '#ffffff' }}
         // label="Search"
         icon={<SearchIcon />}
       />
 
       {isLoggedIn && (
         <BottomNavigationAction
-          style={{ color: '#21e18c' }}
+          style={{ color: active === 2 ? '#21e18c' : '#ffffff' }}
           // label="Search"
           value={2}
           icon={<FavoriteIcon />}
@@ -70,14 +70,14 @@ export default function SimpleBottomNavigation() {
       )}
 
       <BottomNavigationAction
-        style={{ color: '#21e18c' }}
+        style={{ color: active === 3 ? '#21e18c' : '#ffffff' }}
         // label="Movies"
         value={3}
         icon={<MovieIcon />}
       />
       <BottomNavigationAction
         value={4}
-        style={{ color: '#21e18c' }}
+        style={{ color: active === 4 ? '#21e18c' : '#ffffff' }}
         // label="TV Series"
         icon={<TvIcon />}
       />

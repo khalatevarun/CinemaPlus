@@ -40,7 +40,7 @@ const Watchlist = (props) => {
       <div className="Watchlist_createdBy">
         Created By <span>{watchlistInfo.createdBy}</span>
       </div>
-      <div className="movie_cards">
+      <div class="watchlist_cards">
         {watchlistData &&
           watchlistData.map((data) => (
             <SingleContent

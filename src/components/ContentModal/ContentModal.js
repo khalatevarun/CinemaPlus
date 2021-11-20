@@ -34,6 +34,7 @@ import {
   ThemeProvider,
   withStyles,
 } from '@material-ui/core';
+import { memo } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -77,7 +78,7 @@ const CssTextField = withStyles({
   },
 })(TextField);
 
-export default function ContentModal({
+const ContentModal = ({
   children,
   media_type,
   id,
@@ -93,7 +94,7 @@ export default function ContentModal({
   visibleContentModal,
   handleNewWatchlistForm,
   openNewWatchlistForm,
-}) {
+}) => {
   const classes = useStyles();
 
   const [content, setContent] = useState();
@@ -120,6 +121,7 @@ export default function ContentModal({
   useEffect(() => {
     fetchData();
     fetchVideo();
+
     //eslint-disable-next-line
   }, []);
 
@@ -135,6 +137,7 @@ export default function ContentModal({
       >
         {children}
       </div>
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -295,4 +298,6 @@ export default function ContentModal({
       </Modal>
     </>
   );
-}
+};
+
+export default ContentModal;

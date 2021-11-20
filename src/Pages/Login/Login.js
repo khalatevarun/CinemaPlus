@@ -80,6 +80,8 @@ export default function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  console.log('name >>>', name);
+
   const [open, setOpen] = useState(false);
 
   const handleEmailChange = (event) => {
@@ -100,27 +102,36 @@ export default function Login() {
   const signupUser = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const response = await signUpWithEmailAndPassword(email, password);
-      console.log('Response>>', response);
+    if (name.trim()) {
       try {
-        const docRef = await setDoc(doc(db, 'users', response.user.uid), {
-          name: name,
-        });
+        const response = await signUpWithEmailAndPassword(email, password);
+        console.log('Response>>', response);
+        try {
+          const docRef = await setDoc(doc(db, 'users', response.user.uid), {
+            name: name,
+          });
 
-        console.log('Document written with ID: ', docRef.id);
-      } catch (e) {
-        console.error('Error adding document: ', e);
+          console.log('Document written with ID: ', docRef.id);
+        } catch (e) {
+          console.error('Error adding document: ', e);
+        }
+      } catch (err) {
+        console.log('You have got an error: ', err.code);
+        if (err.code === 'auth/email-already-in-use') {
+          setErrorMessage(
+            'Sorry, This Email is already in use with another account.'
+          );
+          setOpen(true);
+        } else if (err.code === 'auth/weak-password') {
+          setErrorMessage('You password is weak, please try again.');
+          setOpen(true);
+        }
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      console.log('You have got an error: ', err.code);
-      if (err.code === 'auth/email-already-in-use') {
-        setErrorMessage(
-          'Sorry, This Email is already in use with another account.'
-        );
-        setOpen(true);
-      }
-    } finally {
+    } else {
+      setErrorMessage('Please enter your name.');
+      setOpen(true);
       setLoading(false);
     }
   };
@@ -179,6 +190,14 @@ export default function Login() {
   const auth = getAuth();
 
   const toggleForm = () => {
+    if (formType === true) {
+      setName('');
+      setEmail('');
+      setPassword('');
+    } else {
+      setEmail('dummy@gmail.com');
+      setPassword('password');
+    }
     setFormType(!formType);
   };
 
@@ -322,7 +341,7 @@ export default function Login() {
           {'Oops! Something went wrong.'}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>{errorMessage}</DialogContentText>
+          <div>{errorMessage}</div>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary" autoFocus>
